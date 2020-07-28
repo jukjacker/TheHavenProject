@@ -44,16 +44,20 @@ if choice != "2":
     u = random.randint(1, 15)
     id = random.randint(1000, 1747)
     frames = input("how many frames bro: ")
+    increment = input("an increment bro pls, could be negative: ")
+    increment2 = input("another increment bro pls, just positive this time: ")
     for a in range(1, int(frames)):
-        b = a / math.pow(math.pow(a, 2) + 1, 0.5)
+        new_a = a + int(increment)
+        b = new_a / math.pow(math.pow(new_a, 2) + 1, 0.5) + int(increment2)
         x = np.linspace(math.pow(u**2/b, 0.5), b/4*(u**2), n)
-        y = np.linspace(math.pow(u**2/b, 0.5), b/4*(u**2), n)
+        y = np.linspace((math.pow(u, 0.5)*b)**2, b*(4/(math.pow(u, 0.5))))
         X, Y = np.meshgrid(x, y)
         Z = np.sinc(np.sqrt(X ** 2 + Y ** 2))
 
         fig = plt.figure()
         ax = fig.gca(projection='3d')
-        ax.plot_surface(X, Y, Z, cmap="inferno")
+        ax.plot_surface(X, Y, Z, cmap="plasma")
+
         plt.savefig("ID_" + str(id) + "_" + str(a) + ".png", dpi=300, bbox_inches='tight')
         image_path = Path('C:/Users/Lenon/PycharmProjects/TheHavenProject')
         plt.close()
